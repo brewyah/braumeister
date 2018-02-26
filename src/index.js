@@ -16,14 +16,14 @@ import { AccountCircle, Menu, Home } from 'material-ui-icons';
 class App extends React.Component {
   constructor() {
     super();
-    this.onMenuIconClick = this.onMenuIconClick.bind(this);
+    this.toggleMenuState = this.toggleMenuState.bind(this);
   }
 
   state = {
     menuOpen: false
   };
 
-  onMenuIconClick() {
+  toggleMenuState() {
     this.setState({ menuOpen: !this.state.menuOpen });
   }
 
@@ -31,10 +31,13 @@ class App extends React.Component {
     return (
       <BrowserRouter>
         <div>
+          {/* Normalize the CSS */}
           <Reboot />
+
+          {/* Header */}
           <AppBar position="static">
             <Toolbar disableGutters={true}>
-              <IconButton color="inherit" onClick={this.onMenuIconClick}>
+              <IconButton color="inherit" onClick={this.toggleMenuState}>
                 <Menu />
               </IconButton>
               <Typography variant="title" color="inherit">
@@ -42,33 +45,37 @@ class App extends React.Component {
               </Typography>
             </Toolbar>
           </AppBar>
+
+          {/* Menu */}
           <Drawer
             anchor="left"
             open={this.state.menuOpen}
-            onClose={this.onMenuIconClick}
+            onClose={this.toggleMenuState}
             variant="temporary"
           >
             <List>
-              <ListItem button>
-                <ListItemIcon>
-                  <Home />
-                </ListItemIcon>
-                <Link to="/">
+              <Link to="/">
+                <ListItem button onClick={this.toggleMenuState}>
+                  <ListItemIcon>
+                    <Home />
+                  </ListItemIcon>
                   <ListItemText primary="Home" />
-                </Link>
-              </ListItem>
-              <ListItem button>
-                <ListItemIcon>
-                  <AccountCircle />
-                </ListItemIcon>
-                <Link to="/users">
+                </ListItem>
+              </Link>
+              <Link to="/users">
+                <ListItem button onClick={this.toggleMenuState}>
+                  <ListItemIcon>
+                    <AccountCircle />
+                  </ListItemIcon>
                   <ListItemText primary="Users" />
-                </Link>
-              </ListItem>
+                </ListItem>
+              </Link>
             </List>
           </Drawer>
+
+          {/* Content */}
           <Switch>
-            <Route exact path="/" render={() => <h1>Admin Home</h1>} />
+            <Route exact path="/" render={() => <h1>Home</h1>} />
             <Route path="/users" render={() => <h1>Users</h1>} />
           </Switch>
         </div>
