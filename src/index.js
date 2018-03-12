@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
 import {
   AppBar,
   Drawer,
@@ -10,52 +11,75 @@ import {
 } from 'material-ui';
 import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
 
-import { AccountCircle, Menu } from 'material-ui-icons';
+import { AccountCircle, Menu, Home } from 'material-ui-icons';
 
 class App extends React.Component {
   constructor() {
     super();
-    this.onMenuIconClick = this.onMenuIconClick.bind(this);
+    this.toggleMenuState = this.toggleMenuState.bind(this);
   }
 
   state = {
     menuOpen: false
   };
 
-  onMenuIconClick() {
+  toggleMenuState() {
     this.setState({ menuOpen: !this.state.menuOpen });
   }
 
   render() {
     return (
-      <div>
-        <Reboot />
-        <AppBar position="static">
-          <Toolbar disableGutters={true}>
-            <IconButton color="inherit" onClick={this.onMenuIconClick}>
-              <Menu />
-            </IconButton>
-            <Typography variant="title" color="inherit">
-              Admin
-            </Typography>
-          </Toolbar>
-        </AppBar>
-        <Drawer
-          anchor="left"
-          open={this.state.menuOpen}
-          onClose={this.onMenuIconClick}
-          variant="temporary"
-        >
-          <List>
-            <ListItem button>
-              <ListItemIcon>
-                <AccountCircle />
-              </ListItemIcon>
-              <ListItemText primary="Users" />
-            </ListItem>
-          </List>
-        </Drawer>
-      </div>
+      <BrowserRouter>
+        <div>
+          {/* Normalize the CSS */}
+          <Reboot />
+
+          {/* Header */}
+          <AppBar position="static">
+            <Toolbar disableGutters={true}>
+              <IconButton color="inherit" onClick={this.toggleMenuState}>
+                <Menu />
+              </IconButton>
+              <Typography variant="title" color="inherit">
+                Admin
+              </Typography>
+            </Toolbar>
+          </AppBar>
+
+          {/* Menu */}
+          <Drawer
+            anchor="left"
+            open={this.state.menuOpen}
+            onClose={this.toggleMenuState}
+            variant="temporary"
+          >
+            <List>
+              <Link to="/">
+                <ListItem button onClick={this.toggleMenuState}>
+                  <ListItemIcon>
+                    <Home />
+                  </ListItemIcon>
+                  <ListItemText primary="Home" />
+                </ListItem>
+              </Link>
+              <Link to="/users">
+                <ListItem button onClick={this.toggleMenuState}>
+                  <ListItemIcon>
+                    <AccountCircle />
+                  </ListItemIcon>
+                  <ListItemText primary="Users" />
+                </ListItem>
+              </Link>
+            </List>
+          </Drawer>
+
+          {/* Content */}
+          <Switch>
+            <Route exact path="/" render={() => <h1>Home</h1>} />
+            <Route path="/users" render={() => <h1>Users</h1>} />
+          </Switch>
+        </div>
+      </BrowserRouter>
     );
   }
 }
