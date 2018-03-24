@@ -5,7 +5,7 @@ import {
     AppBar,
     Drawer,
     IconButton,
-    Reboot,
+    // Reboot,
     Toolbar,
     Typography
 } from 'material-ui';
@@ -31,7 +31,7 @@ class App extends React.Component {
             <BrowserRouter>
                 <div>
                     {/* Normalize the CSS */}
-                    <Reboot/>
+                    {/*<Reboot/>*/}
 
                     {/* Header */}
                     <AppBar position="static">
