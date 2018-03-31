@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import {BrowserRouter, Switch, Route, Link} from 'react-router-dom';
 import {
     AppBar,
@@ -13,7 +12,7 @@ import List, {ListItem, ListItemIcon, ListItemText} from 'material-ui/List';
 
 import {AccountCircle, Menu, Home} from 'material-ui-icons';
 
-class App extends React.Component {
+export default class Braumeister extends React.Component {
     constructor() {
         super();
         this.toggleMenuState = this.toggleMenuState.bind(this);
@@ -82,5 +81,3 @@ class App extends React.Component {
         );
     }
 }
-
-ReactDOM.render(<App/>, document.getElementById('app'));
