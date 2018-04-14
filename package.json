@@ -19,6 +19,9 @@
     "eslint": "^4.19.1",
     "eslint-plugin-react": "^7.7.0",
     "eslint-plugin-react-html": "^1.0.0",
-    "eslint-plugin-brewyah": "git://github.com/brewyah/eslint-plugin-brewyah.git"
+    "eslint-plugin-brewyah": "git://github.com/brewyah/eslint-plugin-brewyah.git",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1"
   }
 }
