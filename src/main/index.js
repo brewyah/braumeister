@@ -1,16 +1,8 @@
-import React from 'react';
-import {BrowserRouter, Switch, Route, Link} from 'react-router-dom';
-import {
-    AppBar,
-    Drawer,
-    IconButton,
-    // Reboot,
-    Toolbar,
-    Typography
-} from 'material-ui';
-import List, {ListItem, ListItemIcon, ListItemText} from 'material-ui/List';
-
-import {AccountCircle, Menu, Home} from 'material-ui-icons';
+import React from "react";
+import {BrowserRouter, Switch, Route, Link} from "react-router-dom";
+import {AppBar, Drawer, IconButton, Toolbar, Typography} from "material-ui";
+import List, {ListItem, ListItemIcon, ListItemText} from "material-ui/List";
+import {AccountCircle, Menu, Home} from "material-ui-icons";
 
 export default class Braumeister extends React.Component {
     constructor() {
@@ -18,7 +10,7 @@ export default class Braumeister extends React.Component {
         this.toggleMenuState = this.toggleMenuState.bind(this);
         this.state = {
             menuOpen: false
-        }
+        };
     }
 
     toggleMenuState() {
