@@ -3,6 +3,7 @@ import {BrowserRouter, Switch, Route, Link} from "react-router-dom";
 import {AppBar, Drawer, IconButton, Toolbar, Typography} from "material-ui";
 import List, {ListItem, ListItemIcon, ListItemText} from "material-ui/List";
 import {AccountCircle, Menu, Home} from "material-ui-icons";
+import User from "./user";
 
 export default class Braumeister extends React.Component {
     constructor() {
@@ -44,7 +45,7 @@ export default class Braumeister extends React.Component {
                         variant="temporary"
                     >
                         <List>
-                            <Link to="/">
+                            <Link to="/admin/">
                                 <ListItem button onClick={this.toggleMenuState}>
                                     <ListItemIcon>
                                         <Home/>
@@ -52,7 +53,7 @@ export default class Braumeister extends React.Component {
                                     <ListItemText primary="Home"/>
                                 </ListItem>
                             </Link>
-                            <Link to="/users">
+                            <Link to="/admin/users">
                                 <ListItem button onClick={this.toggleMenuState}>
                                     <ListItemIcon>
                                         <AccountCircle/>
@@ -65,8 +66,8 @@ export default class Braumeister extends React.Component {
 
                     {/* Content */}
                     <Switch>
-                        <Route exact path="/" render={() => <h1>Home</h1>}/>
-                        <Route path="/users" render={() => <h1>Users</h1>}/>
+                        <Route exact path="/admin/" render={() => <h1>Home</h1>}/>
+                        <Route path="/admin/users" component={User}/>
                     </Switch>
                 </div>
             </BrowserRouter>
