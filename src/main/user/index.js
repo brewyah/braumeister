@@ -1,3 +1,3 @@
 import React from "react";
 
-export default () => (<h1>User Managemente</h1>);
+export default () => (<h1>User Management</h1>);
